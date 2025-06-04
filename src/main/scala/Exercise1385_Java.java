@@ -9,9 +9,7 @@ public class Exercise1385_Java {
     public static int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
         Arrays.sort(arr2);
         AtomicInteger counter = new AtomicInteger();
-        for (int i = 0; i < arr1.length; i++) {
-            int current = arr1[i];
-            Arrays.binarySearch(arr2, d, current - arr2[i], d);
+        for (int current : arr1) {
             Arrays.stream(arr2).filter(elem -> Math.abs(current - elem) <= d).findFirst().ifPresent(e -> counter.incrementAndGet());
         }
         return arr1.length - counter.get();
